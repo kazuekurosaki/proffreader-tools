@@ -14,6 +14,7 @@
             --success: #28a745;
             --warning: #ffc107;
             --danger: #dc3545;
+            --info: #17a2b8;
         }
         
         * {
@@ -27,21 +28,22 @@
             background-color: #f5f7f9;
             color: var(--dark);
             line-height: 1.6;
+            padding: 20px;
         }
         
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
         }
         
         header {
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
-            padding: 1rem 2rem;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem 2rem;
         }
         
         h1 {
@@ -65,6 +67,7 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 20px;
+            padding: 20px;
         }
         
         @media (max-width: 768px) {
@@ -77,7 +80,8 @@
             background: white;
             border-radius: 8px;
             padding: 20px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            border: 1px solid #eee;
         }
         
         .section-title {
@@ -93,7 +97,7 @@
         
         textarea {
             width: 100%;
-            min-height: 400px;
+            min-height: 300px;
             padding: 15px;
             border: 1px solid #ddd;
             border-radius: 6px;
@@ -173,6 +177,11 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
         
+        .btn-info {
+            background-color: var(--info);
+            color: white;
+        }
+        
         .stats-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -210,15 +219,17 @@
             border: 1px solid #eee;
             border-radius: 6px;
             padding: 15px;
+            background: #fafafa;
         }
         
         .issue-item {
-            padding: 10px;
+            padding: 12px;
             border-left: 4px solid var(--warning);
             margin-bottom: 10px;
-            background-color: #fff9e6;
+            background-color: white;
             border-radius: 0 4px 4px 0;
             transition: transform 0.2s;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
         }
         
         .issue-item:hover {
@@ -227,17 +238,14 @@
         
         .issue-error {
             border-left-color: var(--danger);
-            background-color: #ffe6e6;
         }
         
         .issue-success {
             border-left-color: var(--success);
-            background-color: #e6ffe6;
         }
         
         .issue-info {
-            border-left-color: var(--primary);
-            background-color: #e6f0ff;
+            border-left-color: var(--info);
         }
         
         .issue-type {
@@ -253,12 +261,14 @@
             color: #6c757d;
             font-size: 0.9rem;
             margin-top: 5px;
+            line-height: 1.4;
         }
         
         .highlight {
-            background-color: yellow;
+            background-color: #ffeb3b;
             font-weight: bold;
             padding: 0 2px;
+            border-radius: 3px;
         }
         
         .suggestion {
@@ -286,6 +296,10 @@
             gap: 8px;
             margin-top: 10px;
             font-size: 0.9rem;
+            padding: 10px;
+            border-radius: 5px;
+            background: #e8f4fd;
+            color: var(--info);
         }
         
         .status-indicator {
@@ -305,10 +319,10 @@
         
         footer {
             text-align: center;
-            margin-top: 30px;
             padding: 20px;
             color: #6c757d;
             font-size: 0.9rem;
+            border-top: 1px solid #eee;
         }
         
         .feature-list {
@@ -316,6 +330,7 @@
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 15px;
             margin: 20px 0;
+            padding: 0 20px;
         }
         
         .feature-item {
@@ -323,6 +338,7 @@
             padding: 15px;
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            border: 1px solid #eee;
         }
         
         .feature-title {
@@ -333,6 +349,31 @@
             align-items: center;
             gap: 8px;
         }
+        
+        .connection-info {
+            background: #fff3cd;
+            border-left: 4px solid var(--warning);
+            padding: 15px;
+            margin: 20px;
+            border-radius: 4px;
+        }
+        
+        .connection-info h3 {
+            margin-bottom: 10px;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .reason-list {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+        
+        .reason-list li {
+            margin-bottom: 8px;
+        }
     </style>
 </head>
 <body>
@@ -341,6 +382,18 @@
             <h1><span class="logo">📖</span> NovelProof</h1>
             <p class="subtitle">Alat proofreading canggih untuk penulis novel dengan integrasi API</p>
         </header>
+        
+        <div class="connection-info">
+            <h3><span>ℹ️</span> Informasi Koneksi API</h3>
+            <p>Pesan "Tidak terhubung dengan API. Menggunakan pemeriksaan dasar." muncul ketika aplikasi tidak dapat terhubung ke API LanguageTool. Ini bisa terjadi karena:</p>
+            <ul class="reason-list">
+                <li>Koneksi internet bermasalah</li>
+                <li>Server API sedang down atau maintenance</li>
+                <li>Pemblokiran CORS oleh browser</li>
+                <li>Terlalu banyak permintaan dalam waktu singkat</li>
+            </ul>
+            <p>Jangan khawatir, aplikasi akan tetap berfungsi dengan sistem pemeriksaan dasar yang telah disediakan.</p>
+        </div>
         
         <div class="feature-list">
             <div class="feature-item">
@@ -406,7 +459,7 @@ Rania merasa jantungnya berdebar kencang. Dia mencoba berkata sesuatu, tapi kata
                 
                 <div class="api-status">
                     <span class="status-indicator status-connected" id="api-status-indicator"></span>
-                    <span id="api-status-text">Terhubung dengan API LanguageTool</span>
+                    <span id="api-status-text">Menunggu pemeriksaan...</span>
                 </div>
             </div>
             
@@ -422,12 +475,13 @@ Rania merasa jantungnya berdebar kencang. Dia mencoba berkata sesuatu, tapi kata
                 <div class="button-group">
                     <button id="save-btn" class="btn-success" disabled><span>💾</span> Simpan Hasil</button>
                     <button id="export-btn" class="btn-secondary" disabled><span>📤</span> Ekspor ke PDF</button>
+                    <button id="try-again-btn" class="btn-info" disabled><span>🔄</span> Coba Hubungi API</button>
                 </div>
             </div>
         </div>
         
         <footer>
-            <p>NovelProof - Alat Proofreading Canggih untuk Novel © 2023 | Menggunakan API LanguageTool</p>
+            <p>NovelProof - Alat Proofreading Canggih untuk Novel © 2023 | Menggunakan API LanguageTool dengan fallback sistem dasar</p>
         </footer>
     </div>
 
@@ -440,6 +494,7 @@ Rania merasa jantungnya berdebar kencang. Dia mencoba berkata sesuatu, tapi kata
             const fixAllBtn = document.getElementById('fix-all-btn');
             const saveBtn = document.getElementById('save-btn');
             const exportBtn = document.getElementById('export-btn');
+            const tryAgainBtn = document.getElementById('try-again-btn');
             const resultsContainer = document.getElementById('results');
             const wordCountEl = document.getElementById('word-count');
             const charCountEl = document.getElementById('char-count');
@@ -450,6 +505,7 @@ Rania merasa jantungnya berdebar kencang. Dia mencoba berkata sesuatu, tapi kata
             
             let issues = [];
             let originalText = '';
+            let apiConnected = false;
             
             // Hitung statistik dasar
             function updateBasicStats() {
@@ -487,12 +543,17 @@ Rania merasa jantungnya berdebar kencang. Dia mencoba berkata sesuatu, tapi kata
                     }
                     
                     const data = await response.json();
+                    apiConnected = true;
+                    apiStatusIndicator.classList.add('status-connected');
+                    apiStatusText.textContent = 'Terhubung dengan API LanguageTool';
                     return data.matches || [];
                 } catch (error) {
                     console.error('Error checking grammar:', error);
+                    apiConnected = false;
                     apiStatusIndicator.classList.remove('status-connected');
                     apiStatusIndicator.classList.add('status-disconnected');
                     apiStatusText.textContent = 'Tidak terhubung dengan API. Menggunakan pemeriksaan dasar.';
+                    tryAgainBtn.disabled = false;
                     return [];
                 }
             }
@@ -516,6 +577,7 @@ Rania merasa jantungnya berdebar kencang. Dia mencoba berkata sesuatu, tapi kata
                 // Tampilkan status loading
                 checkBtn.innerHTML = '<span class="loading"></span> Memeriksa...';
                 checkBtn.disabled = true;
+                tryAgainBtn.disabled = true;
                 
                 issues = [];
                 
@@ -534,7 +596,39 @@ Rania merasa jantungnya berdebar kencang. Dia mencoba berkata sesuatu, tapi kata
                     });
                 });
                 
-                // 2. Periksa konsistensi nama karakter (contoh sederhana)
+                // 2. Jika API tidak terhubung, gunakan pemeriksaan dasar
+                if (!apiConnected) {
+                    // Pemeriksaan ejaan dasar
+                    const commonErrors = [
+                        {word: 'di', wrong: 'dis', correct: 'di'},
+                        {word: 'ke', wrong: 'kes', correct: 'ke'},
+                        {word: 'yang', wrong: 'yg', correct: 'yang'},
+                        {word: 'saja', wrong: 'aja', correct: 'saja'},
+                        {word: 'apa', wrong: 'apa', correct: 'apa'},
+                        {word: 'di sana', wrong: 'disana', correct: 'di sana'},
+                        {word: 'di sebelah', wrong: 'disebelah', correct: 'di sebelah'},
+                        {word: 'di sini', wrong: 'disini', correct: 'di sini'},
+                        {word: 'di dalam', wrong: 'didalam', correct: 'di dalam'}
+                    ];
+                    
+                    commonErrors.forEach(error => {
+                        const regex = new RegExp(`\\b${error.wrong}\\b`, 'gi');
+                        let match;
+                        while ((match = regex.exec(text)) !== null) {
+                            issues.push({
+                                type: 'Kesalahan Ejaan',
+                                message: `Kata "${error.wrong}" mungkin seharusnya "${error.correct}"`,
+                                context: text.substring(Math.max(0, match.index - 20), Math.min(text.length, match.index + 20)),
+                                offset: match.index,
+                                length: error.wrong.length,
+                                replacements: [{value: error.correct}],
+                                isGrammar: true
+                            });
+                        }
+                    });
+                }
+                
+                // 3. Periksa konsistensi nama karakter (contoh sederhana)
                 if (text.includes('Rania') && text.includes('Raniah')) {
                     issues.push({
                         type: 'Konsistensi Nama',
@@ -545,7 +639,7 @@ Rania merasa jantungnya berdebar kencang. Dia mencoba berkata sesuatu, tapi kata
                     });
                 }
                 
-                // 3. Periksa format dialog
+                // 4. Periksa format dialog
                 const dialogRegex = /"[^"]*"[^.,!?]*[.,!?](?![^"]*")/g;
                 let dialogMatch;
                 while ((dialogMatch = dialogRegex.exec(text)) !== null) {
@@ -562,7 +656,7 @@ Rania merasa jantungnya berdebar kencang. Dia mencoba berkata sesuatu, tapi kata
                     }
                 }
                 
-                // 4. Periksa kata berulang
+                // 5. Periksa kata berulang
                 const words = text.toLowerCase().split(/\s+/);
                 const wordCount = {};
                 words.forEach(word => {
@@ -620,7 +714,7 @@ Rania merasa jantungnya berdebar kencang. Dia mencoba berkata sesuatu, tapi kata
                             <div class="issue-message">${issue.message}</div>
                             ${issue.replacements && issue.replacements.length > 0 ? 
                                 `<div class="issue-context">Saran: <span class="suggestion">${issue.replacements[0].value}</span></div>` : ''}
-                            <div class="issue-context">...${issue.context}...</div>
+                            <div class="issue-context">...${highlightIssue(issue.context, issue.offset, issue.length)}...</div>
                             ${issue.isGrammar ? `<button onclick="applySuggestion(${index})" class="btn-secondary" style="margin-top: 8px; padding: 5px 10px; font-size: 0.8rem;">Terapkan Saran</button>` : ''}
                         </div>
                     `;
@@ -629,6 +723,19 @@ Rania merasa jantungnya berdebar kencang. Dia mencoba berkata sesuatu, tapi kata
                 resultsContainer.innerHTML = resultsHTML;
                 saveBtn.disabled = false;
                 exportBtn.disabled = false;
+            }
+            
+            // Highlight masalah dalam konteks
+            function highlightIssue(context, offset, length) {
+                if (!offset || !length) return context;
+                
+                const startPos = Math.max(0, offset - 10);
+                const endPos = Math.min(context.length, offset + length + 10);
+                const issueText = context.substring(offset, offset + length);
+                
+                return context.substring(startPos, offset) + 
+                       `<span class="highlight">${issueText}</span>` + 
+                       context.substring(offset + length, endPos);
             }
             
             // Terapkan saran perbaikan
@@ -683,6 +790,12 @@ Rania merasa jantungnya berdebar kencang. Dia mencoba berkata sesuatu, tapi kata
                 fixAllBtn.disabled = true;
             }
             
+            // Coba hubungi API lagi
+            tryAgainBtn.addEventListener('click', function() {
+                apiStatusText.textContent = "Mencoba menghubungi API...";
+                checkNovel();
+            });
+            
             // Event listeners
             checkBtn.addEventListener('click', checkNovel);
             
@@ -699,6 +812,8 @@ Rania merasa jantungnya berdebar kencang. Dia mencoba berkata sesuatu, tapi kata
                 saveBtn.disabled = true;
                 exportBtn.disabled = true;
                 fixAllBtn.disabled = true;
+                apiStatusText.textContent = 'Menunggu pemeriksaan...';
+                apiStatusIndicator.classList.remove('status-connected', 'status-disconnected');
             });
             
             sampleBtn.addEventListener('click', function() {
@@ -723,6 +838,7 @@ Rania merasa jantungnya berdebar kencang. Dia mencoba berkata sesuatu, tapi kata
 =================================
 Tanggal: ${new Date().toLocaleDateString('id-ID')}
 Total masalah ditemukan: ${issues.length}
+Status API: ${apiConnected ? 'Terhubung' : 'Tidak terhubung'}
 
 ${issues.map(issue => `[${issue.type}] ${issue.message}`).join('\n')}
                 `;
